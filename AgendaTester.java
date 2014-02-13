@@ -32,10 +32,10 @@ public class AgendaTester {
 		}
 
 		agenda.aggiungiAppuntamento(a1);
-		//for(Appuntamento x : agenda.getVettore()) {
-		//	if (x.inConflitto(a2) == false)
-				agenda.aggiungiAppuntamento(a2);
-		//}
+		
+			
+		agenda.aggiungiAppuntamento(a2);
+		
 		agenda.aggiungiAppuntamento(a3);
 		agenda.aggiungiAppuntamento(a4);
 		agenda.aggiungiAppuntamento(a5);
