@@ -27,13 +27,14 @@ public abstract class Appuntamento implements Comparable<Appuntamento> {
 			throw new IllegalArgumentException ("Data non valida ");
 	}
 			
-				
+			
 
 	//METODI
 	public boolean inConflitto(Appuntamento altro) {
 		if (altro.getData().equals(this.data)) {
-			if (altro.getOra() == (this.orario - 1) || altro.getOra() == this.orario || altro.getOra() == (this.orario + 1))
-				return true;
+                        if (this.orario < altro.getOra()+1 && altro.getOra()+1 < this.orario+1
+			  || this.orario < altro.getOra() && altro.getOra() < this.orario+1)
+			{return true;}
 		}
 		return false;
 	}
