@@ -36,22 +36,20 @@ public class Agenda implements Iterable<Appuntamento> {
 
 	public int statistiche(String tipo) {
 		int percentuale = 0;
-		int l = 0;
-		int p = 0;
+		int k = 0;
 		if (tipo.equals("lavoro")) {
 			for (Appuntamento x : appuntamenti){
 				if(x instanceof AppuntamentoLavoro)
-					l++;
+					k++;
 			}
-			percentuale = l / appuntamenti.size() * 100;
 		}
 		else if (tipo.equals("personale")) {
 			for (Appuntamento x : appuntamenti) {
 				if(x instanceof AppuntamentoPersonale)
-					p++;
+					k++;
 			}
-			percentuale = p / appuntamenti.size();
 		}
+		percentuale = k * 100 / appuntamenti.size();
 		return percentuale;
 	}
 

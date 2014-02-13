@@ -39,33 +39,6 @@ public abstract class Appuntamento implements Comparable<Appuntamento> {
 	}
 
 	public String toString() {
-		/*String stringaMese;
-		switch(this.getMese()) {
-			case 1:
-				stringaMese = "gennaio";
-			case 2:
-				stringaMese = "febbraio";
-			case 3:
-				stringaMese = "marzo";
-			case 4:
-				stringaMese = "aprile";
-			case 5:
-				stringaMese = "maggio";
-			case 6:
-				stringaMese = "giugno";
-			case 7:
-				stringaMese = "luglio";
-			case 8:
-				stringaMese = "agosto";
-			case 9:
-				stringaMese = "settembre";
-			case 10:
-				stringaMese = "ottobre";
-			case 11:
-				stringaMese = "novembre";
-			case 12:
-				stringaMese = "dicembre";
-		}*/
 		return (this.data + " h: " + this.orario + ":00 " + this.descrizione);
 	}
 
