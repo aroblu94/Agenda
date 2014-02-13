@@ -46,6 +46,7 @@ public class AgendaTester {
 
 		//Stampo l'agenda
 		System.out.println(agenda);
+		System.out.println("=====================");
 		for(Appuntamento x : agenda)
 			System.out.println(x);
 

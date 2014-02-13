@@ -38,7 +38,7 @@ public class Agenda implements Iterable<Appuntamento> {
 	}
 
 	public String toString(){
-		return "Agenda di " + this.titolare + "\n" + "=====================";
+		return "Agenda di " + this.titolare;
 	}
 
 	public int statistiche(String tipo) {
