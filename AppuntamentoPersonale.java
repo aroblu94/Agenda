@@ -33,4 +33,4 @@ public class AppuntamentoPersonale extends Appuntamento {
 	public Persona getPersona() {
 		return this.persona;
 	}
-}
+}//non mi fa il commit non sao perchè, questo commento spero gli permetterà di farlo

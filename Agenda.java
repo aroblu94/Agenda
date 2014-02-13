@@ -30,43 +30,8 @@ public class Agenda implements Iterable<Appuntamento> {
 		return this.appuntamenti.iterator();
 	}
 
-	//Ridefinisco l'iteratore
-	/*public Iterator<Appuntamento> iterator() {
-		Iterator<Appuntamento> it = new Iterator<Appuntamento>() {
-			private int currentIndex = 0;
-
-			public boolean hasNext() {
-				return (currentIndex < appuntamenti.size() && !appuntamenti.isEmpty());
-	    	}
-
-			public Appuntamento next() {
-	        	return appuntamenti.get(currentIndex++);
-	    	}
-
-			public void remove() {
-			    appuntamenti.remove(currentIndex -1);
-			}
-		};
-		return it;
-
-	}*/
-
-	//METODO ALTERNATIVO (Iterable è all'interno del toString())
 	public String toString(){
-		/*String titolo = new String ("Agenda di " + this.titolare + "\n");
-		Iterator<Appuntamento> elenco = (this.appuntamenti).iterator();
-		while(elenco.hasNext()){
-			Appuntamento a = elenco.next();
-			if(a instanceof Appuntamento){
-				return titolo + a.toString();
-			}
-			else{
-				return titolo + a.toString();
-			}
-		}
-		return titolo + "L'agenda e' vuota";*/
 		return "Agenda di " + this.titolare + "\n" + "=====================";
-
 	}
 
 	public int statistiche(String tipo) {
@@ -85,7 +50,7 @@ public class Agenda implements Iterable<Appuntamento> {
 				if(x instanceof AppuntamentoPersonale)
 					p++;
 			}
-			percentuale = p / appuntamenti.size() * 100;
+			percentuale = p / appuntamenti.size();
 		}
 		return percentuale;
 	}

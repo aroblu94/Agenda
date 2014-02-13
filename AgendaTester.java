@@ -58,4 +58,4 @@ public class AgendaTester {
 		System.out.println("Percentuale appuntamenti personali: " + agenda.statistiche("personale") + "%");
 
 	}
-}
+}//non mi fa il commit non sao perchè, questo commento spero gli permetterà di farlo

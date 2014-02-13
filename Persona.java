@@ -27,6 +27,6 @@ public class Persona {
 		this.nome = n;
 		this.cognome = c;
 	}
-
+//non mi fa il commit non sao perchè, questo commento spero gli permetterà di farlo
 
 }
