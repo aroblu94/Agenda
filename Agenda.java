@@ -15,7 +15,14 @@ public class Agenda implements Iterable<Appuntamento> {
 
 	//METODI
 	public void aggiungiAppuntamento(Appuntamento a) {
-		appuntamenti.add(a);
+	        boolean inConflitto = false;
+		for (Appuntamento tmp : this) {
+		    if (tmp.inConflitto(a)) {
+		        inConflitto = true;
+			break;
+		    }
+		}
+		if (!inConflitto) appuntamenti.add(a);
 	}
 
 	public void rimuoviAppuntamento(Appuntamento a) {
@@ -69,8 +76,8 @@ public class Agenda implements Iterable<Appuntamento> {
 
 	}
 
-	public int statistiche(String tipo) {
-		int percentuale = 0;
+	public double statistiche(String tipo) {
+		double percentuale = 0;
 		int l = 0;
 		int p = 0;
 		if (tipo.equals("lavoro")) {
@@ -78,14 +85,14 @@ public class Agenda implements Iterable<Appuntamento> {
 				if(x instanceof AppuntamentoLavoro)
 					l++;
 			}
-			percentuale = l / appuntamenti.size() * 100;
+			percentuale = 100. * l / appuntamenti.size();
 		}
 		else if (tipo.equals("personale")) {
 			for (Appuntamento x : appuntamenti) {
 				if(x instanceof AppuntamentoPersonale)
 					p++;
 			}
-			percentuale = p / appuntamenti.size() * 100;
+			percentuale = 100. * p / appuntamenti.size();
 		}
 		return percentuale;
 	}
