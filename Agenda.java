@@ -15,7 +15,14 @@ public class Agenda implements Iterable<Appuntamento> {
 
 	//METODI
 	public void aggiungiAppuntamento(Appuntamento a) {
-		appuntamenti.add(a);
+	        boolean inConflitto = false;
+		for (Appuntamento tmp : this) {
+		    if (tmp.inConflitto(a)) {
+		        inConflitto = true;
+			break;
+		    }
+		}
+		if (!inConflitto) appuntamenti.add(a);
 	}
 
 	public void rimuoviAppuntamento(Appuntamento a) {
