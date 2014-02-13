@@ -30,60 +30,15 @@ public abstract class Appuntamento implements Comparable<Appuntamento> {
 			
 
 	//METODI
-	
-	/*
-	 *       |  |  v this.orario+1
-	 *   |===|==|==|
-	 *   ^ this.orario
-	 *       |  |
-	 * |xxxxx|  |
-	 *          |
-	 *          |xxxxx|
-	 *
-	 * La prima bara e' l'oggetto puntato da this;
-	 * le altre due sotto sono due possibili appuntamenti.
-	 * Il conflitto c'e' se la 'coda' di 'altro' e' compreso
-	 * fra l'inizio e la fine di this, oppure se la 'testa'
-	 * di 'altro' e' compreso fra l'inizio e la fine di altro.
-	 * Caso particolare: le 'teste' di this e 'altro' coincidono.
-	 */
 	public boolean inConflitto(Appuntamento altro) {
 		if (altro.getData().equals(this.data)) {
-                        if (this.orario < altro.getOra()+1 && altro.getOra()+1 < this.orario+1
-			  || this.orario <= altro.getOra() && altro.getOra() < this.orario+1)
-			{return true;}
+			if (altro.getOra() == (this.orario - 1) || altro.getOra() == this.orario || altro.getOra() == (this.orario + 1))
+				return true;
 		}
 		return false;
 	}
 
 	public String toString() {
-		/*String stringaMese;
-		switch(this.getMese()) {
-			case 1:
-				stringaMese = "gennaio";
-			case 2:
-				stringaMese = "febbraio";
-			case 3:
-				stringaMese = "marzo";
-			case 4:
-				stringaMese = "aprile";
-			case 5:
-				stringaMese = "maggio";
-			case 6:
-				stringaMese = "giugno";
-			case 7:
-				stringaMese = "luglio";
-			case 8:
-				stringaMese = "agosto";
-			case 9:
-				stringaMese = "settembre";
-			case 10:
-				stringaMese = "ottobre";
-			case 11:
-				stringaMese = "novembre";
-			case 12:
-				stringaMese = "dicembre";
-		}*/
 		return (this.data + " h: " + this.orario + ":00 " + this.descrizione);
 	}
 
