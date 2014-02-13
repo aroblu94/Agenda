@@ -1,20 +1,20 @@
-public class AppuntamentoPersonale extends Appuntamento {
+public class AppuntamentoLavoro extends Appuntamento {
 	
 	//CAMPI
-	private Persona persona;
+	private String luogo;
 
 	//COSTRUTTORE
-	public AppuntamentoPersonale (String desc, String d, int o, Persona p) {
+	public AppuntamentoLavoro(String desc, String d, int o, String l) {
 		super(desc, d, o);
-		persona = p;
+		luogo = l;
 	}
 
 	//METODI
 	public String toString() {
-		return super.toString() + " con " + this.persona;
+		return super.toString() + " - " + this.luogo;
 	}
 
-	public int compareTo(AppuntamentoPersonale altro) {
+	public int compareTo(AppuntamentoLavoro altro) {
 		if (this.getGiorno() == altro.getGiorno()) {
 			if (this.getOra() == altro.getOra())
 				return 0;
@@ -29,8 +29,8 @@ public class AppuntamentoPersonale extends Appuntamento {
 				return -1;
 	}
 
-	//metodo get...
-	public Persona getPersona() {
-		return this.persona;
+	// metodo get...
+	public String getLuogo() {
+		return this.luogo;
 	}
 }
