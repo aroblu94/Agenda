@@ -38,27 +38,31 @@ public class Agenda implements Iterable<Appuntamento> {
 	}
 
 	public String toString(){
-		return "Agenda di " + this.titolare;
+		return "AGENDA DI " + this.titolare.getNome().toUpperCase() + " " + this.titolare.getCognome().toUpperCase();
 	}
 
 	public int statistiche(String tipo) {
 		int percentuale = 0;
 		int k = 0;
-		if (tipo.equals("lavoro")) {
-			for (Appuntamento x : appuntamenti){
-				if(x instanceof AppuntamentoLavoro)
-					k++;
+		if (!appuntamenti.isEmpty()) {
+			if (tipo.equals("lavoro")) {
+				for (Appuntamento x : appuntamenti){
+					if(x instanceof AppuntamentoLavoro)
+						k++;
+				}
+				percentuale = 100 * k / appuntamenti.size();
 			}
-			percentuale = 100 * k / appuntamenti.size();
-		}
-		else if (tipo.equals("personale")) {
-			for (Appuntamento x : appuntamenti) {
-				if(x instanceof AppuntamentoPersonale)
-					k++;
+			else if (tipo.equals("personale")) {
+				for (Appuntamento x : appuntamenti) {
+					if(x instanceof AppuntamentoPersonale)
+						k++;
+				}
+				percentuale = 100 * k / appuntamenti.size();
 			}
-			percentuale = 100 * k / appuntamenti.size();
+			return percentuale;
 		}
-		return percentuale;
+		else
+			return 0;
 	}
 
 	//Get vettore...

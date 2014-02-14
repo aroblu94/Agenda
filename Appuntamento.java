@@ -5,26 +5,30 @@ public abstract class Appuntamento implements Comparable<Appuntamento> {
 	//CAMPI
 	private String descrizione, data;
 	private int orario;
+	private int mm = 0;
+	private int gg = 0;
+	private String month = "";
+	private String day = "";
 
 	//COSTRUTTORE
 	public Appuntamento (String desc, String d, int o) {
-		if (d.length() == 5) {
-			int mm = Integer.parseInt(d.substring(0,2));
-			int gg = Integer.parseInt(d.substring(3));
-			if (mm>0 && mm<=12) {
-				if(gg>0 && gg<=31) {
-					descrizione = desc;
-					data = d;
-					orario = o;
-				}
-				else 
-					throw new IllegalArgumentException ("Giorno non valido  ");
+		Scanner token = new Scanner(d);
+		token.useDelimiter("-");
+		String month = token.next();
+		String day = token.next();
+		mm = Integer.parseInt(month);
+		gg = Integer.parseInt(day);
+		if (mm>0 && mm<=12) {
+			if(gg>0 && gg<=31) {
+				descrizione = desc;
+				data = d;
+				orario = o;
 			}
-			else
-				throw new IllegalArgumentException ("Mese non valido ");
+			else 
+				throw new IllegalArgumentException ("Giorno non valido  ");
 		}
-		else 
-			throw new IllegalArgumentException ("Data non valida ");
+		else
+			throw new IllegalArgumentException ("Mese non valido ");
 	}
 			
 			
@@ -39,7 +43,47 @@ public abstract class Appuntamento implements Comparable<Appuntamento> {
 	}
 
 	public String toString() {
-		return (this.data + " h: " + this.orario + ":00 " + this.descrizione);
+		String stringaMese = "";
+		switch(mm) {
+			case 1:
+				stringaMese = "gennaio";
+				break;
+			case 2:
+				stringaMese = "febbraio";
+				break;
+			case 3:
+				stringaMese = "marzo";
+				break;
+			case 4:
+				stringaMese = "aprile";
+				break;
+			case 5:
+				stringaMese = "maggio";
+				break;
+			case 6:
+				stringaMese = "giugno";
+				break;
+			case 7:
+				stringaMese = "luglio";
+				break;
+			case 8:
+				stringaMese = "agosto";
+				break;
+			case 9:
+				stringaMese = "settembre";
+				break;
+			case 10:
+				stringaMese = "ottobre";
+				break;
+			case 11:
+				stringaMese = "novembre";
+				break;
+			case 12:
+				stringaMese = "dicembre";
+				break;
+		}
+		return (this.getGiorno() + " " + stringaMese + ", ore " + this.orario + ":00 " + this.descrizione);
+		//return (this.getGiorno() + "-" + this.getMese() + " ore " + this.orario + ":00 " + this.descrizione);
 	}
 
 	public int compareTo(Appuntamento altro) {
@@ -74,7 +118,7 @@ public abstract class Appuntamento implements Comparable<Appuntamento> {
 		return this.descrizione;
 	}
 	
-	public void setData(String data){
+	/*public void setData(String data){
 		if (data.length() == 5) {
 			int mese = Integer.parseInt(data.substring(0,2));
 			int giorno = Integer.parseInt(data.substring(3));
@@ -90,14 +134,14 @@ public abstract class Appuntamento implements Comparable<Appuntamento> {
 		}
 		else 
 			throw new IllegalArgumentException ("Data non valida ");
-	}
+	}*/
 
 	public int getGiorno(){
-		return Integer.parseInt(data.substring(3));
+		return gg; //Integer.parseInt(data.substring(3));
 	}
 
 	public int getMese(){
-		return Integer.parseInt(data.substring(0,2));
+		return mm; //Integer.parseInt(data.substring(0,2));
 	}
 
 	public String getData() {

@@ -8,11 +8,20 @@ public class Main {
 	public static void main (String[] args) {
 		Scanner in = new Scanner(System.in);
 		Appuntamento app;
+		String descrizione = "";
+		String data = "";
+		int ora = 0;
+		String tipo = "";
+		String nome = "";
+		String cognome = "";
+		Persona chi = null;
+		Appuntamento a = null;
+		String dove = "";
 
 		System.out.println("Questo programma permette di memorizzare e gestire appuntamenti ");
-		System.out.println("Inserisci il tuo nome e il tuo cognome (separati da uno spazio)");
-		String nome = in.next();
-		String cognome = in.next();
+		System.out.println("Inserisci nome e cognome (separati da uno spazio)");
+		nome = in.next();
+		cognome = in.next();
 		System.out.println();
 
 		Persona utente = new Persona(nome, cognome);
@@ -25,49 +34,74 @@ public class Main {
 			System.out.println();
 		}
 
-		System.out.println("Benvenuto " + utente.getNome() + ", cosa vuoi fare? ");
+		System.out.println("Benvenuto " + utente.getNome());
 		while(1==1) {
-			System.out.println("1. Aggiungi appuntamento \n2. Rimuovi appuntamento \n3. Ordina gli appuntamenti \n4. Stampa l'agenda \n5. Esci \n");
+			System.out.println("Scegli cosa vuoi fare \n1. Aggiungi appuntamento \n2. Rimuovi appuntamento \n3. Ordina gli appuntamenti \n4. Stampa l'agenda \n5. Ottieni statistiche \n6. Esci \n");
 			String selezione = in.next();
 			int sel = Integer.parseInt(selezione);
 			switch (sel) {
 				case 1:
 					System.out.println("Inserisci una descrizione per l'appuntamento");
-					String descrizione = in.next();
+					descrizione = in.next();
 					System.out.println("Inserisci la data nel formato MM-GG ");
-					String data = in.next();
+					data = in.next();
 					System.out.println("Inserisci l'ora di inizio ");
-					int ora = Integer.parseInt(in.next());
+					ora = Integer.parseInt(in.next());
 					System.out.println("E' un appuntamento personale o di lavoro? P/L ");
-					String tipo = in.next();
+					tipo = in.next();
 					if (tipo.equals("p") || tipo.equals("P")) {
 						System.out.println("Con chi hai l'appuntamento? (nome cognome)");
-						String nome2 = in.next();
-						String cognome2 = in.next();
-						Persona chi = new Persona(nome2, cognome2);
-						Appuntamento a = new AppuntamentoPersonale(descrizione, data, ora, chi);
+						nome = in.next();
+						cognome = in.next();
+						chi = new Persona(nome, cognome);
+						a = new AppuntamentoPersonale(descrizione, data, ora, chi);
 						agenda.aggiungiAppuntamento(a);
 					}
 					else if (tipo.equals("l") || tipo.equals("L")) {
 						System.out.println("Luogo dell'appuntamento? ");
-						String dove = in.next();
-						Appuntamento a = new AppuntamentoLavoro(descrizione, data, ora, dove);
+						dove = in.next();
+						a = new AppuntamentoLavoro(descrizione, data, ora, dove);
 						agenda.aggiungiAppuntamento(a);
 					}
 					else
 						System.out.println("Hai sbagliato a digitare! ");
 					System.out.println();
 					break;
-				case 2:
-					System.out.println("Questa funzione e' ancora da implementare ");	//DA FARE
-					String descrizione2 = in.next();
-					//agenda.rimuoviAppuntamento(app.setDescrizione(descrizione2));
+				case 2:	//NON RIMUOVE
+					System.out.println("Inserisci una descrizione per l'appuntamento");
+					descrizione = in.next();
+					System.out.println("Inserisci la data nel formato MM-GG ");
+					data = in.next();
+					System.out.println("Inserisci l'ora di inizio ");
+					ora = Integer.parseInt(in.next());
+					System.out.println("E' un appuntamento personale o di lavoro? P/L ");
+					tipo = in.next();
+					if (tipo.equals("p") || tipo.equals("P")) {
+						System.out.println("Con chi hai l'appuntamento? (nome cognome)");
+						nome = in.next();
+						cognome = in.next();
+						chi = new Persona(nome, cognome);
+						a = new AppuntamentoPersonale(descrizione, data, ora, chi);
+						agenda.rimuoviAppuntamento(a);
+					}
+					else if (tipo.equals("l") || tipo.equals("L")) {
+						System.out.println("Luogo dell'appuntamento? ");
+						dove = in.next();
+						a = new AppuntamentoLavoro(descrizione, data, ora, dove);
+						agenda.rimuoviAppuntamento(a);
+					}
+					else
+						System.out.println("Hai sbagliato a digitare! ");
 					System.out.println();
 					break;
 				case 3:
-					System.out.println("Sto ordinando gli appuntamenti... Fatto! ");
-					agenda.ordina();
-					System.out.println();
+					if(!agenda.getVettore().isEmpty()) {
+						System.out.println("Sto ordinando gli appuntamenti... ");
+						agenda.ordina();
+						System.out.println("... \n... Fatto! \n");
+					}
+					else
+						System.out.println("Nessun appuntamento trovato! ");
 					break;
 				case 4:
 					System.out.println(agenda);
@@ -76,6 +110,10 @@ public class Main {
 					System.out.println();
 					break;
 				case 5:
+					System.out.println("Percentuale appuntamenti di lavoro: " + agenda.statistiche("lavoro") + "%");
+					System.out.println("Percentuale appuntamenti personali: " + agenda.statistiche("personale") + "%");
+					break;
+				case 6:
 					System.exit(0);
 					break;
 				default:
