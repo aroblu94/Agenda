@@ -5,7 +5,13 @@ public class Main {
 
 	private static boolean debug = false;
 
-	public static void main (String[] args) {
+	public static void main (String[] args) throws IOException {
+		try {
+			Runtime.getRuntime().exec("/bin/bash clear").waitFor();
+		} 
+		catch (InterruptedException e) {
+			System.out.println("Non riesco a fare il clear dello schermo ");
+		}
 		Scanner in = new Scanner(System.in);
 		Appuntamento app;
 		String descrizione = "";
@@ -119,6 +125,12 @@ public class Main {
 				default:
 					System.out.println("Hai sbagliato tasto, riprova! ");
 					break;
+			}
+			try {
+				Runtime.getRuntime().exec("/bin/bash clear").waitFor();
+			} 
+			catch (InterruptedException e) {
+				System.out.println("Non riesco a fare il clear dello schermo ");
 			}
 			System.out.println();
 		}
